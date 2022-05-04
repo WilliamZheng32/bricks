@@ -13,9 +13,13 @@ color brown = #964B00;
 color darkbrown = #5C4033;
 color pink = #FF1493;
 
+//array
 int[] x;
 int[] y;
+boolean[] alive;
 int brickd;
+int n;
+int tempx, tempy;
 
 //mode
 int mode;
@@ -37,6 +41,26 @@ float vx, vy;//velocity
 float d, Rp, R;
 
 void setup(){
+ int i = 0;
+ brickd = 50;
+ x = new int[n];
+ y = new int[n];
+ alive = new boolean[n];
+  tempx = tempy = 100;
+  n = 28;
+  alive[i] = true;
+  
+   while(i<n){
+  x[i] = tempx;
+  y[i] = tempy;
+  alive[i] = true;
+  tempx = tempx + 100;
+  if(tempx== width){
+    tempx = 100;
+    tempy +=100;
+  }
+ }
+  
   size(800,800);
   textAlign(CENTER, CENTER);
   mode=GAME;
@@ -51,20 +75,9 @@ void setup(){
   
   vx = random(-7, 7);
   vy = random(-7, 7);
-  
-  //bricks
-  brickd = 50;
- x = new int[3];
- y = new int[3];
  
- x[0] = 100;
- y[0] = 100;
  
- x[1] = 400;
- y[1] = 100;
- 
- x[2] = 700;
- y[2] = 100;
+
  
 }
 
