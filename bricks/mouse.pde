@@ -11,4 +11,7 @@ void mouseReleased(){
  else if (mode == GAMEOVER){
    gameoverclicks();
  } 
+ else if (mode == WIN){
+  winclicks(); 
+ }
 }

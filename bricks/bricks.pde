@@ -20,6 +20,12 @@ boolean[] alive;
 int brickd;
 int n;
 int tempx, tempy;
+int score;
+int lives;
+
+color colorchange,schange,tchange,achange,rchange,Tchange;
+int countersize;
+int counter;
 
 //mode
 int mode;
@@ -27,6 +33,7 @@ final int INTRO = 1;
 final int GAME = 2;
 final int PAUSE = 3;
 final int GAMEOVER = 4;
+final int WIN = 5;
 
 //entity variables
 float px, py, pd;
@@ -40,31 +47,42 @@ float vx, vy;//velocity
 //bouncing variables
 float d, Rp, R;
 
-void setup(){
- int i = 0;
- brickd = 50;
- x = new int[n];
- y = new int[n];
- alive = new boolean[n];
+int timer;
+
+void setup() {
+  lives=3;
+  score=0;
+  timer = 100;
+  counter=0;
+  colorchange=red;
+  countersize=10;
+  
+  int i = 0;
+  brickd = 50;
+   n = 28;
+  x = new int[n];
+  y = new int[n];
+  alive = new boolean[n];
   tempx = tempy = 100;
-  n = 28;
+ 
   alive[i] = true;
-  
-   while(i<n){
-  x[i] = tempx;
-  y[i] = tempy;
-  alive[i] = true;
-  tempx = tempx + 100;
-  if(tempx== width){
-    tempx = 100;
-    tempy +=100;
+
+  while (i<n) {
+    x[i] = tempx;
+    y[i] = tempy;
+    alive[i] = true;
+    tempx = tempx + 100;
+    if (tempx == width) {
+      tempx = 100;
+      tempy +=100;
+    }
+    i+=1;
   }
- }
-  
-  size(800,800);
+
+  size(800, 800);
   textAlign(CENTER, CENTER);
-  mode=GAME;
-  
+  mode=INTRO;
+
   //paddle and ball
   px = width/2;
   py = height;
@@ -72,17 +90,15 @@ void setup(){
   ballx = width/2;
   bally = height-200;
   balld = 10;
-  
-  vx = random(-7, 7);
-  vy = random(-7, 7);
- 
- 
 
- 
+  vx = (1);
+  vy = (1);
+  
+  reset();
 }
 
-void draw(){
-    if (mode == INTRO) {
+void draw() {
+  if (mode == INTRO) {
     intro();
   } else if (mode == GAME) {
     game();
@@ -90,8 +106,11 @@ void draw(){
     pause();
   } else if (mode == GAMEOVER) {
     gameover();
-  } else {
+  }
+    else if (mode == WIN){
+     win(); 
+  }
+  else {
     println("mode error: " + mode);
   }
-  //
 }
