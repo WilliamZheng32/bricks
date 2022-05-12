@@ -23,6 +23,10 @@ int tempx, tempy;
 int score;
 int lives;
 
+color colorchange,schange,tchange,achange,rchange,Tchange;
+int countersize;
+int counter;
+
 //mode
 int mode;
 final int INTRO = 1;
@@ -43,12 +47,19 @@ float vx, vy;//velocity
 //bouncing variables
 float d, Rp, R;
 
+int timer;
+
 void setup() {
   lives=3;
   score=0;
+  timer = 100;
+  counter=0;
+  colorchange=red;
+  countersize=10;
+  
   int i = 0;
   brickd = 50;
-   n = 28;
+   n = 50;
   x = new int[n];
   y = new int[n];
   alive = new boolean[n];
@@ -70,7 +81,7 @@ void setup() {
 
   size(800, 800);
   textAlign(CENTER, CENTER);
-  mode=GAME;
+  mode=INTRO;
 
   //paddle and ball
   px = width/2;
@@ -80,8 +91,10 @@ void setup() {
   bally = height-200;
   balld = 10;
 
-  vx = random(-7, 7);
-  vy = random(-7, 7);
+  vx = (1);
+  vy = (1);
+  
+  reset();
 }
 
 void draw() {

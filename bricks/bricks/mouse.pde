@@ -1,4 +1,4 @@
-void mouseReleased(){
+ void mouseReleased(){
  if (mode == INTRO){
    introclicks();
  }
@@ -11,4 +11,7 @@ void mouseReleased(){
  else if (mode == GAMEOVER){
    gameoverclicks();
  } 
+ else if (mode == WIN){
+  winclicks(); 
+ }
 }

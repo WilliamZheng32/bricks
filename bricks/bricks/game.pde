@@ -1,10 +1,11 @@
 void game() {
   background(blue);
-
+  timer-=1;
   //bricks
-  circle(x[0], y[0], brickd);
-  circle(x[1], y[1], brickd);
-  circle(x[2], y[2], brickd);
+  stroke(black);
+  //circle(x[0], y[0], brickd);
+  //circle(x[1], y[1], brickd);
+  //circle(x[2], y[2], brickd);
   int i = 0;
   while (i<n) {
     if (alive[i] == true) {
@@ -12,11 +13,11 @@ void game() {
     }
     i++;
   }
-  
-   //score and lives 
+
+  //score and lives 
   textSize(50);
   fill(purple);
-  text("score: ", 625, 500);
+  text("score: ", 610, 500);
   text(score, 700, 500);
   fill(red);
   text("lives: ", 625, 600);
@@ -26,16 +27,18 @@ void game() {
   fill(white);
   circle(px, py, pd);
   if (akey == true) {
-    px-=5;
+    px-=7;
   }
   if (dkey == true) {
-    px+=5;
+    px+=7;
   }
   //ball
   fill(white);
   circle(ballx, bally, balld);
-  ballx += vx;
-  bally += vy;
+  if (timer<0) {
+    ballx += vx;
+    bally += vy;
+  }
 
   //bouncing
   d=dist(px, py, ballx, bally);
@@ -47,7 +50,7 @@ void game() {
     vy = (bally - py)/10;
   }
   //bouncing off wall
-  if (bally < balld/2 || bally > height-balld/2) {
+  if (bally < balld/2) {
     vy*=-1;
   }
   if (ballx < balld/2 || ballx > width-balld/2) {
@@ -58,21 +61,26 @@ void game() {
   px=min(px, 750);
   ballx=max(ballx, 10);
   ballx=min(ballx, 790);
-  
-if(bally>800){
- lives-=1;
- fill(white);
-  circle(ballx, bally, balld);
-  ballx += vx;
-  bally += vy;
-}
- if(score==28){
+
+  if (bally>800) {
+    lives-=1;
+    fill(white);
+    circle(ballx, bally, balld);
+    ballx = width/2;
+    bally = height-200;
+    timer=100;
+  }
+
+  if (lives == 0) {
+    mode=GAMEOVER;
+  }
+  if (score==28) {
     mode=WIN;
   }
 }
 
 void gameclicks() {
- mode=PAUSE;
+  mode=PAUSE;
 }
 
 void managebrick(int i) {
