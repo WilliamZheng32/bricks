@@ -59,8 +59,8 @@ void game() {
   //paddle and ball restrictions
   px=max(px, 50);
   px=min(px, 750);
-  ballx=max(ballx, 10);
-  ballx=min(ballx, 790);
+  ballx=max(ballx, 0);
+  ballx=min(ballx, 800);
 
   if (bally>800) {
     lives-=1;

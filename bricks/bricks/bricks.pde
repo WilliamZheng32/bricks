@@ -17,11 +17,15 @@ color pink = #FF1493;
 int[] x;
 int[] y;
 boolean[] alive;
+PImage[] gif;
 int brickd;
 int n;
 int tempx, tempy;
 int score;
 int lives;
+
+int f;
+int numberofframes;
 
 color colorchange,schange,tchange,achange,rchange,Tchange;
 int countersize;
@@ -50,6 +54,16 @@ float d, Rp, R;
 int timer;
 
 void setup() {
+  
+  numberofframes = 36;
+  gif = new PImage[numberofframes];
+  
+  int g = 0;
+  while(g < numberofframes){
+    gif[g] = loadImage("frame_"+g+"_delay-0.03s");
+    g+=1;
+  }
+ 
   lives=3;
   score=0;
   timer = 100;
@@ -79,7 +93,7 @@ void setup() {
     i+=1;
   }
 
-  size(800, 800);
+  size(800, 800,FX2D);
   textAlign(CENTER, CENTER);
   mode=INTRO;
 

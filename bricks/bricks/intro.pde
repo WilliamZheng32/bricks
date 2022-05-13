@@ -1,4 +1,12 @@
 void intro(){
+ 
+  image(gif[f],0,0,width,height);
+  f+=1;
+  if (f == numberofframes){
+   f=0; 
+  }
+  
+  
   background(lightblue);
   
  fill(colorchange);
