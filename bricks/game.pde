@@ -1,11 +1,8 @@
 void game() {
   background(blue);
-   timer-=1;
+  timer-=1;
   //bricks
   stroke(black);
-  circle(x[0], y[0], brickd);
-  circle(x[1], y[1], brickd);
-  circle(x[2], y[2], brickd);
   int i = 0;
   while (i<n) {
     if (alive[i] == true) {
@@ -13,8 +10,8 @@ void game() {
     }
     i++;
   }
-  
-   //score and lives 
+
+  //score and lives 
   textSize(50);
   fill(purple);
   text("score: ", 610, 500);
@@ -27,17 +24,17 @@ void game() {
   fill(white);
   circle(px, py, pd);
   if (akey == true) {
-    px-=5;
+    px-=7;
   }
   if (dkey == true) {
-    px+=5;
+    px+=7;
   }
   //ball
   fill(white);
   circle(ballx, bally, balld);
-  if(timer<0){
-  ballx += vx;
-  bally += vy;
+  if (timer<0) {
+    ballx += vx;
+    bally += vy;
   }
 
   //bouncing
@@ -59,28 +56,28 @@ void game() {
   //paddle and ball restrictions
   px=max(px, 50);
   px=min(px, 750);
-  ballx=max(ballx, 10);
-  ballx=min(ballx, 790);
-  
-if(bally>800){
- lives-=1;
- fill(white);
-  circle(ballx, bally, balld);
-  ballx = width/2;
-  bally = height-200;
-  timer=100;
-}
+  ballx=max(ballx, 0);
+  ballx=min(ballx, 800);
 
-if(lives == 0){
-  mode=GAMEOVER;
-}
- if(score==28){
+  if (bally>800) {
+    lives-=1;
+    fill(white);
+    circle(ballx, bally, balld);
+    ballx = width/2;
+    bally = height-200;
+    timer=100;
+  }
+
+  if (lives == 0) {
+    mode=GAMEOVER;
+  }
+  if (score==28) {
     mode=WIN;
   }
 }
 
 void gameclicks() {
- mode=PAUSE;
+  mode=PAUSE;
 }
 
 void managebrick(int i) {
@@ -96,6 +93,9 @@ void managebrick(int i) {
   if (y[i]==400) {
     fill(green);
   }
+  if (y[i]==500) {
+    fill(brown);
+}
   circle(x[i], y[i], brickd);
   if (dist(ballx, bally, x[i], y[i])< balld/2 + brickd/2) {
     vx = (ballx - x[i])/10;

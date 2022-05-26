@@ -17,11 +17,15 @@ color pink = #FF1493;
 int[] x;
 int[] y;
 boolean[] alive;
+PImage[] gif;
 int brickd;
 int n;
 int tempx, tempy;
 int score;
 int lives;
+
+int f;
+int numberofframes;
 
 color colorchange,schange,tchange,achange,rchange,Tchange;
 int countersize;
@@ -50,6 +54,10 @@ float d, Rp, R;
 int timer;
 
 void setup() {
+  
+  numberofframes = 36;
+  gif = new PImage[numberofframes];
+ 
   lives=3;
   score=0;
   timer = 100;
@@ -59,7 +67,7 @@ void setup() {
   
   int i = 0;
   brickd = 50;
-   n = 28;
+  n = 50;
   x = new int[n];
   y = new int[n];
   alive = new boolean[n];
@@ -79,7 +87,7 @@ void setup() {
     i+=1;
   }
 
-  size(800, 800);
+  size(800, 800,FX2D);
   textAlign(CENTER, CENTER);
   mode=INTRO;
 
@@ -113,4 +121,5 @@ void draw() {
   else {
     println("mode error: " + mode);
   }
+  
 }

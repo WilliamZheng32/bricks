@@ -1,5 +1,19 @@
 void intro(){
-  background(lightblue);
+ 
+   int g = 0;
+  while(g < numberofframes){
+    gif[g] = loadImage("frame_"+g+"_delay-0.03s");
+    g+=1;
+  }
+  image(gif[f],0,0,width,height);
+  println(frameCount);
+  if(frameCount%2 == 0) f+=1;
+  if (f == numberofframes){
+   f=0;
+  }
+  
+  
+  //background(lightblue);
   
  fill(colorchange);
   textSize(countersize);
