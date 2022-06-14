@@ -2,7 +2,7 @@ void intro(){
  
    int g = 0;
   while(g < numberofframes){
-    gif[g] = loadImage("frame_"+g+"_delay-0.03s");
+    gif[g] = loadImage("frame_"+g+"_delay-0.03s.gif");
     g+=1;
   }
   image(gif[f],0,0,width,height);
@@ -12,9 +12,8 @@ void intro(){
    f=0;
   }
   
-  
   //background(lightblue);
-  
+  //
  fill(colorchange);
   textSize(countersize);
   text("BRICKBREAKER",400,200);

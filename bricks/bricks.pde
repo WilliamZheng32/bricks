@@ -99,8 +99,8 @@ void setup() {
   bally = height-200;
   balld = 10;
 
-  vx = (1);
-  vy = (1);
+  vx = (2);
+  vy = (2);
   
   reset();
 }
